@@ -1,0 +1,101 @@
+ <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Pagina Inicio</title>
+        <meta charset="UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap CSS v5.2.1 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<!-- Bootstrap CSS v5.2.1 -->
+<link rel="import" href="header.html">
+    </head>
+    <body class="container">
+        <div id="header-placeholder">
+<!-- navbar  -->
+<headers>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light rounded mt-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="http://localhost:8080/index#">
+                      <img class="" src="../logo-ilerna-02.png" width="100" height="50">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Administracion
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="http://localhost:8080/alumno/crud">Alumno</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="http://localhost:8080/profesor/crud">Profesor</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="http://localhost:8080/fp/crud">Formacion Profesional</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="http://localhost:8080/tipoasistencia/crud">Tipos de Asistencia</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="http://localhost:8080/asignatura/listar">Asignatura</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="http://localhost:8080/turno/crud">Turno</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="http://localhost:8080/modalidad/crud">Modalidad</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="http://localhost:8080/periodo/crud">Periodo</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="http://localhost:8080/aula/crud">Aula</a></li><li>
+                            <hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="http://localhost:8080/horario/crud">Horario</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="http://localhost:8080/grupo/crud">Grupo</a></li>
+
+
+
+                          </ul>
+                        </li>
+                          <li class="nav-item">
+                          <a class="nav-link" href="#">Justificante</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link disabled">Inasistencia</a>
+                        </li>
+                      </ul>
+                      <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Profesor" aria-label="Search">
+                        <div class="dropdown">
+                          <a class="btn btn-ligth dropdown-toggle border border-light-subtle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Profesor
+                          </a>
+                        
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Profesor 1</a></li>
+                            <li><a class="dropdown-item" href="#">Profesor 2</a></li>
+                            <li><a class="dropdown-item" href="#">Profesor 3</a></li>
+                          </ul>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </nav>
+<!-- Fin navbar  -->
+        </div>
+</headers>
+
+<!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+       
+<!-- Bootstrap JavaScript Libraries -->
+
+<script>
+$(function(){$("#header-placeholder").load("header.html");
+});
+</script>
+    </body>
+</html>
