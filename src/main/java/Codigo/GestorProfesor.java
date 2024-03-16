@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -20,11 +21,13 @@ Statement consulta;
     Conexion c = new Conexion();
     
 public void alta(Profesor p) throws SQLException{
-            consulta = c.conectar().createStatement();
-            String cadena = "insert into profesor(nombre,apellido,correo, telefono,contrasena) values ('"+ p.getNombre() + "','"+p.getApellido()+ "','"+p.getCorreo()+ "','"+p.getTelefono()+ "','"+p.getContrasena()+"')";
-            //System.out.println(cadena);
-            consulta.executeUpdate(cadena);
-    }    
+    String contrasenaEncriptada = BCrypt.hashpw(p.getContrasena(), BCrypt.gensalt());
+    //System.out.println("Contraseña encriptada: " + contrasenaEncriptada);
+    consulta = c.conectar().createStatement();
+    String cadena = "insert into profesor(nombre,apellido,correo, telefono,contrasena) values ('"+ p.getNombre() + "','"+p.getApellido()+ "','"+p.getCorreo()+ "','"+p.getTelefono()+ "','"+contrasenaEncriptada+"')";
+    //System.out.println(cadena);
+    consulta.executeUpdate(cadena);
+}
 public List<Profesor> listar() throws SQLException {
         ResultSet rs = null;
         List<Profesor> profesorList;
@@ -92,7 +95,8 @@ public Profesor consultarUn(int id) throws SQLException{
 
     public void modificar(Profesor profesor) throws SQLException{
         consulta = c.conectar().createStatement();
-        String cadena = "update profesor set nombre='"+profesor.getNombre()+"', apellido='"+profesor.getApellido()+"', correo='"+profesor.getCorreo()+"', telefono='"+profesor.getTelefono()+"', contrasena='"+profesor.getContrasena()+"'"+" where id="+profesor.getId();
+        String contrasenaEncriptada = BCrypt.hashpw(profesor.getContrasena(), BCrypt.gensalt());
+        String cadena = "update profesor set nombre='"+profesor.getNombre()+"', apellido='"+profesor.getApellido()+"', correo='"+profesor.getCorreo()+"', telefono='"+profesor.getTelefono()+"', contrasena='"+contrasenaEncriptada+"'"+" where id="+profesor.getId();
         //System.out.println(cadena);
         consulta.executeUpdate(cadena);
     }
@@ -102,9 +106,13 @@ public Profesor consultarUn(int id) throws SQLException{
     Profesor profesor = null;
     ResultSet rs = null;
     consulta = c.conectar().createStatement();
-    String cadena = "SELECT * FROM profesor WHERE correo='" + prof.getCorreo() + "' AND contrasena='" + prof.getContrasena() + "'";
+    String cadena = "SELECT * FROM profesor WHERE correo='" + prof.getCorreo()+"';";
     rs = consulta.executeQuery(cadena);
-    if (rs.next()) {
+    if (rs.next() && BCrypt.checkpw(prof.getContrasena(), rs.getString("contrasena"))) {
+        System.out.println(prof.getCorreo());
+        System.out.println(prof.getContrasena());
+        System.out.println(rs.getString("contrasena"));
+        System.out.println(BCrypt.checkpw(prof.getContrasena(), rs.getString("contrasena")));
         profesor = new Profesor();
         profesor.setId(rs.getInt("id"));
         profesor.setNombre(rs.getString("nombre"));
