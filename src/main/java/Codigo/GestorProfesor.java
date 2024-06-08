@@ -109,10 +109,10 @@ public Profesor consultarUn(int id) throws SQLException{
     String cadena = "SELECT * FROM profesor WHERE correo='" + prof.getCorreo()+"';";
     rs = consulta.executeQuery(cadena);
     if (rs.next() && BCrypt.checkpw(prof.getContrasena(), rs.getString("contrasena"))) {
-        System.out.println(prof.getCorreo());
-        System.out.println(prof.getContrasena());
-        System.out.println(rs.getString("contrasena"));
-        System.out.println(BCrypt.checkpw(prof.getContrasena(), rs.getString("contrasena")));
+        //System.out.println(prof.getCorreo());
+        //System.out.println(prof.getContrasena());
+        //System.out.println(rs.getString("contrasena"));
+        //System.out.println(BCrypt.checkpw(prof.getContrasena(), rs.getString("contrasena")));
         profesor = new Profesor();
         profesor.setId(rs.getInt("id"));
         profesor.setNombre(rs.getString("nombre"));

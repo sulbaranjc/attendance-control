@@ -1,6 +1,6 @@
 drop database IF EXISTS ilerna;
 CREATE DATABASE IF NOT EXISTS ilerna;
-USE ilerna;
+USE ilerna; 
 
 CREATE TABLE fp (
   id INT NOT NULL AUTO_INCREMENT,

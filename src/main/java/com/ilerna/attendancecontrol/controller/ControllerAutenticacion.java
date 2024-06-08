@@ -4,7 +4,10 @@
  */
 package com.ilerna.attendancecontrol.controller;
 
+import Codigo.GestorAsignatura;
 import Codigo.GestorProfesor;
+import Codigo.GestorAsignaturaGrupo;
+import Codigo.AsignaturaGrupo;
 import Codigo.Profesor;
 import Codigo.SingletonProfesor;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -25,7 +29,8 @@ import java.sql.SQLException;
 @RequestMapping("/autenticacion")
 public class ControllerAutenticacion {
    private GestorProfesor gestorProfesor = SingletonProfesor.getGestorProfesor();
-//   GestorProfesor ge = new GestorProfesor (); 
+//   GestorProfesor ge = new GestorProfesor ();
+
    
  @GetMapping("/login")
  public String login(Model model){
@@ -43,10 +48,12 @@ public ModelAndView greetingSubmit(@ModelAttribute Profesor buscarProfesor, Mode
         try {
             Profesor profesor = gestorProfesor.autenticarProfesor(buscarProfesor);
             if (profesor != null) {
-                    SingletonProfesor.setProfesor(profesor);
-                    model.addAttribute("profesor",SingletonProfesor.getProfesor());
-                    System.out.println("sesion valida para : "+SingletonProfesor.getProfesor().getNombre());
-                    return new ModelAndView("redirect:/index");
+                SingletonProfesor.setProfesor(profesor);
+                model.addAttribute("profesor",SingletonProfesor.getProfesor());
+                GestorAsignaturaGrupo gestorAsignaturaGrupo = new GestorAsignaturaGrupo();
+                //model.addAttribute("asignaturasGrupo", gestorAsignaturaGrupo.listar(SingletonProfesor.getProfesor().getId()));
+                // System.out.println("sesion valida para : "+SingletonProfesor.getProfesor().getNombre());
+                return new ModelAndView("redirect:/index");
             } else {
                 model.addAttribute("error", "Credenciales inválidas. Por favor, inténtalo de nuevo.");
                 System.out.println("erros en sesion");

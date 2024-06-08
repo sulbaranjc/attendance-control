@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalle de Asistencias</title>
+    <meta charset="UTF-8">
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style type="text/css">
+        span {
+            display: inline-block;
+            width: 200px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body class="container">
+<!-- navbar -->
+<th:block th:replace="~{./navbar :: headers}"></th:block>
+<!-- End navbar -->
+<div class="d-flex justify-content-center align-items-center">
+    <h1>Detalles de Asistencias</h1>
+</div>
+<div class="container">
+    <form id="searchForm" class="d-flex" role="search" method="post" th:action="@{/asistencia/listar?asigGruId=1}">
+        <input type="hidden" name="asigGruId" th:value="${asigGruId}">
+        <input class="form-control me-2" type="search" placeholder="Buscar" name="filtro" id="filtro" aria-label="filtro" th:value="${filtro}">
+        <button class="btn btn-outline-primary" type="submit">Buscar</button>
+    </form>
+    <table class="table table-striped">
+        <thead>
+        <tr class="text-left">
+            <th>Fecha</th>
+            <th>ID Alumno</th>
+            <th>Nombre Alumno</th>
+            <th>Apellido Alumno</th>
+            <th>ID Horario Detalle</th>
+            <th>Día Semana</th>
+            <th>Hora Inicio</th>
+            <th>Hora Final</th>
+            <th>Tipo Asistencia</th>
+            <th>Descripción Asistencia</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="asistencia : ${asistencias}">
+            <td th:text="${asistencia.fecha}"></td>
+            <td th:text="${asistencia.idAlumno}"></td>
+            <td th:text="${asistencia.nombreAlumno}"></td>
+            <td th:text="${asistencia.apellidoAlumno}"></td>
+            <td th:text="${asistencia.idHorarioDetalle}"></td>
+            <td th:text="${asistencia.nombreDiaSemana}"></td>
+            <td th:text="${asistencia.horaInicio}"></td>
+            <td th:text="${asistencia.horaFinal}"></td>
+            <td th:text="${asistencia.nombreTipoAsistencia}"></td>
+            <td th:text="${asistencia.idTipoAsistencia == 1 ? 'Justificada' : asistencia.idTipoAsistencia == 2 ? 'Injustificada' : 'Retraso'}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Footer -->
+<div th:replace="~{./footer :: footer1}"></div>
+<!-- End Footer -->
+<!-- Bootstrap JavaScript Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+</script>
+<script type="text/javascript">
+    function submitForm(event) {
+        event.preventDefault();
+        var form = document.getElementById('searchForm');
+        var asigGruId = form.asigGruId.value;
+        var filtro = form.filtro.value;
+        var actionUrl = form.action + '?asigGruId=' + asigGruId;
+        fetch(actionUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(new FormData(form)).toString()
+        }).then(response => {
+            if (response.ok) {
+                return response.text();
+            } else {
+                throw new Error('Error en la solicitud');
+            }
+        }).then(html => {
+            document.documentElement.innerHTML = html;
+        }).catch(error => {
+            console.error('Error:', error);
+        });
+    }
+</script>
+</body>
+</html>

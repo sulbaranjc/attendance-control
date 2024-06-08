@@ -42,24 +42,20 @@ public List<Asignatura> listar() throws SQLException {
             }
         return asignaturas;
     }
-
-public List<Asignatura> getAsignaturasPorProfesor(int idProfesor) throws SQLException {
+public ResultSet getAsignaturasPorProfesor(int idProfesor) throws SQLException {
         ResultSet rs = null;
         List<Asignatura> asignaturas;
         asignaturas = new ArrayList<>();
         consulta = c.conectar().createStatement();
-        String cadena = "SELECT * FROM asignatura;";
+        String cadena = "SELECT asg.id,asignatura.nombre, profesor.nombre as profesor, aula.nombre as aula, asg.id_horario" +
+            " FROM asignatura_grupo as asg, asignatura, profesor, aula" +
+            " WHERE asg.id_asignatura = asignatura.id AND asg.id_profesor = profesor.id AND asg.id_aula = aula.id AND asg.id_profesor = "+idProfesor+" " +
+            " ORDER BY profesor.nombre;";
+        System.out.println(cadena);
         rs = consulta.executeQuery(cadena);
-            while (rs.next()) {
-                Asignatura asignatura = new Asignatura();
-                asignatura.setId(rs.getInt("id"));
-                asignatura.setNombre(rs.getString("nombre"));
-                asignatura.setFpId(rs.getInt("fp_id"));
-                asignatura.setNombreFpId(rs.getString("fp_nombre"));
-                asignaturas.add(asignatura);
-            }
-        return asignaturas;
+        return rs;
     }
+
 
 
 private static int convertirANumero(String p) {
