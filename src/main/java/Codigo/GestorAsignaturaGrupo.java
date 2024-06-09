@@ -53,5 +53,41 @@ public class GestorAsignaturaGrupo {
         }
         return asignaturasGrupo;
     }
-
+    public AsignaturaGrupo consultarUn(int id) throws SQLException {
+        AsignaturaGrupo asignaturaGrupo = new AsignaturaGrupo();
+        ResultSet rs = null;
+        consulta = c.conectar().createStatement();
+        String cadena = "SELECT asg.id , asignatura.id as idAsignatura , asignatura.nombre as nombreIdAsignatura , " +
+                "profesor.id as idprofesor , profesor.nombre as nombreidprofesor , aula.id as idAula , " +
+                "aula.nombre as nombreIdAula , asg.id_horario as idHorario , horario.nombre as nombreIdHorario , " +
+                "asg.id_grupo as idgrupo , grupo.nombre as nombreIdGrupo , fp.nombre , " +
+                "periodo.nombre as nombreIdPeriodo , periodo.id as idPeriodo " +
+                "FROM asignatura_grupo as asg , asignatura , " +
+                "profesor , aula, grupo , horario , fp , periodo " +
+                "WHERE asg.id_asignatura = asignatura.id AND " +
+                "grupo.id_fp = fp.id AND " +
+                "asg.id_profesor = profesor.id AND " +
+                "asg.id_aula = aula.id AND " +
+                "asg.id_grupo = grupo.id AND " +
+                "asg.id_horario = horario.id AND " +
+                "grupo.id_periodo = periodo.id AND " +
+                "asg.id = " + id + ";";
+        rs = consulta.executeQuery(cadena);
+        while (rs.next()) {
+            asignaturaGrupo.setId(rs.getInt("id"));
+            asignaturaGrupo.setIdAsignatura(rs.getInt("idAsignatura"));
+            asignaturaGrupo.setNombreIdAsignatura(rs.getString("nombreIdAsignatura"));
+            asignaturaGrupo.setIdProfesor(rs.getInt("idprofesor"));
+            asignaturaGrupo.setNombreIdProfesor(rs.getString("nombreidprofesor"));
+            asignaturaGrupo.setIdAula(rs.getInt("idAula"));
+            asignaturaGrupo.setNombreIdAula(rs.getString("nombreIdAula"));
+            asignaturaGrupo.setIdHorario(rs.getInt("idHorario"));
+            asignaturaGrupo.setNombreIdHorario(rs.getString("nombreIdHorario"));
+            asignaturaGrupo.setIdGrupo(rs.getInt("idgrupo"));
+            asignaturaGrupo.setNombreIdGrupo(rs.getString("nombreIdGrupo"));
+            asignaturaGrupo.setIdPeriodo(rs.getInt("idPeriodo"));
+            asignaturaGrupo.setNombreIdPeriodo(rs.getString("nombreIdPeriodo"));
+        }
+        return asignaturaGrupo;
+    }
 }

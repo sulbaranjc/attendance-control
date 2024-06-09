@@ -75,6 +75,7 @@ public class GestorAsistenciaDetalle {
                 "WHERE " +
                 "(AG.id = " + asigGruId + " " +
                 "AND( AL.nombre LIKE '%" + filtro + "%' " +
+                "OR A.fecha LIKE '%" + filtro + "%' " +
                 "OR AL.apellido LIKE '%" + filtro + "%' " +
                 "OR DS.nombre LIKE '%" + filtro + "%' " +
                 "OR TA.nombre LIKE '%" + filtro + "%' " +

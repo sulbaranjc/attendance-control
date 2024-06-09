@@ -7,6 +7,6 @@ FROM
 JOIN
     ilerna.alumno_grupo ag ON a.id = ag.id_alumno
 WHERE
-    ag.id_grupo = 1  -- Cambia este valor según el grupo que quieras consultar
+    ag.id_grupo = 2  -- Cambia este valor según el grupo que quieras consultar
 ORDER BY
     a.nombre , a.apellido;

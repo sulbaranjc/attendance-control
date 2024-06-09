@@ -1,18 +1,18 @@
 USE ilerna;
 
-INSERT INTO  ilerna.fp (nombre, descripcion)
-VALUES
+INSERT INTO  ilerna.fp (nombre, descripcion) 
+VALUES 
 	 ('DAM-DAW-01', 'Desarrollo web Primer Año'),
 	 ('DAW-02', 'Desarrollo web Segundo Año'),
      ('DAM-02', 'Desarrollo multiplataforma Segundo Año');
-
-INSERT INTO  ilerna.turno (nombre)
-VALUES
+     
+INSERT INTO  ilerna.turno (nombre) 
+VALUES 
 	 ('Mañana'),
      ('Tarde');
 
-INSERT INTO ilerna.asignatura (nombre, fp_id)
-VALUES
+INSERT INTO ilerna.asignatura (nombre, fp_id) 
+VALUES 
 	('Programacion I', '1'),
     ('Lenguaje de marca ', '1'),
     ('FOL', '1'),
@@ -26,7 +26,7 @@ VALUES
     ('Despliegues de Aplicaciones', '2'),
     ('Ingles', '2');
 
-
+   
 INSERT INTO ilerna.profesor (nombre, apellido, correo, telefono, contrasena)
 VALUES
   ('Frank', 'Soltero', 'solterof@gmail.com', '555-1234', '$2a$10$Ma72XPk7ONK5y2tjqyyDdeTsh4c568TmNhHk21eEnAQYED2.Hqiy.'),
@@ -40,11 +40,11 @@ VALUES
   ('Pedro', 'Ruiz', 'pedro.ruiz@gmail.com', '555-1213', '$2a$10$Ma72XPk7ONK5y2tjqyyDdeTsh4c568TmNhHk21eEnAQYED2.Hqiy.'),
   ('Juan Carlos', 'sulbaran', 'sulbaranjc@gmail.com', '555-1415', '$2a$10$aewA8WQIuJvs5nCtLCJKMOtbydRMC3GQLHJxNv9VYtbj1v45jn9fm');
 
-INSERT INTO  ilerna.aula (nombre)
-VALUES
+INSERT INTO  ilerna.aula (nombre) 
+VALUES 
 	 ('4.1'),
      ('4.2');
-
+     
 INSERT INTO ilerna.modalidad (nombre)
 VALUES
 ('Presencial'),
@@ -59,7 +59,7 @@ VALUES
   (5, 'viernes'),
   (6, 'sabado'),
   (7, 'domingo');
-
+  
 INSERT INTO ilerna.calendario (id_dia_semana, hora_inicio, hora_final)
 VALUES
   (1, '08:30:00', '09:25:00'),
@@ -97,19 +97,19 @@ VALUES
   (5, '11:45:00', '12:40:00'),
   (5, '12:40:00', '13:35:00'),
   (5, '13:35:00', '14:20:00');
-
-
-INSERT INTO  ilerna.horario (nombre)
-VALUES
+  
+  
+INSERT INTO  ilerna.horario (nombre) 
+VALUES 
 	 ('P1'),
      ('P2'),
 	 ('P3'),
      ('P4'),
 	 ('P5'),
      ('P6');
-
-INSERT INTO  ilerna.horario_detalle (id_horario, id_calendario)
-VALUES
+     
+INSERT INTO  ilerna.horario_detalle (id_horario, id_calendario) 
+VALUES 
 	 (1, 1),
      (1, 2),
 	 (1, 15),
@@ -156,19 +156,19 @@ VALUES
 INSERT INTO ilerna.asignatura_grupo (id_asignatura, id_profesor, id_aula, id_horario, id_grupo)
 VALUES
   (4, 2, 1, 1, 1),
-  (2, 2, 1, 2, 1),
+  (2, 10, 1, 2, 1),
   (1, 1, 1, 3, 1),
-  (5, 2, 1, 4, 1),
-  (6, 1, 1, 5, 1),
+  (5, 10, 1, 4, 1),
+  (6, 10, 1, 5, 1),
   (3, 3, 1, 6, 1),
-  (7, 2, 1, 1, 2),
-  (8, 4, 1, 2, 2),
-  (9, 1, 1, 3, 2),
+  (7, 4, 1, 1, 2),
+  (8, 7, 1, 2, 2),
+  (9, 6, 1, 3, 2),
   (10, 5, 1, 4, 2),
-  (11, 10, 1, 5, 2),
-  (12, 10, 1, 6, 2);
-
-
+  (11, 1, 1, 5, 2),
+  (12, 8, 1, 6, 2);  
+  
+  
 INSERT INTO ilerna.alumno (dni, nombre, apellido, correo)
 VALUES
   ('12345678A','Ana', 'López', 'ana.lopez@ejemplo.com'),
@@ -216,22 +216,31 @@ VALUES
   (2, 19),
   (2, 20);
 
-
-
-INSERT INTO  ilerna.tipo_asistencia (nombre)
-VALUES
+   
+   
+INSERT INTO  ilerna.tipo_asistencia (nombre) 
+VALUES 
 	 ('Justificada'),
      ('Injustificada'),
      ('Retraso');
-
+     
 
 INSERT INTO ilerna.asistencia (fecha, id_alumno, id_horario_detalle, id_tipo_asistencia)
 VALUES
-  ('2023-04-28',1, 25,1);
+  ('2023-04-01',1,1,1),
+  ('2023-04-05',2,2,2),
+  ('2023-04-07',3,3,1),
+  ('2023-04-10',4,4,2),
+  ('2023-04-28',5,5,2),
+  ('2023-04-01',6,6,2),
+  ('2023-04-05',7,7,2),
+  ('2023-04-07',8,7,2),
+  ('2023-04-10',9,7,2),
+  ('2023-04-28',10,7,2);
+  
 
+     
+     
 
-
-
-
-
+    
 

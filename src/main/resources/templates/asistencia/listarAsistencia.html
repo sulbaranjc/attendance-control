@@ -18,11 +18,16 @@
 <!-- navbar -->
 <th:block th:replace="~{./navbar :: headers}"></th:block>
 <!-- End navbar -->
-<div class="d-flex justify-content-center align-items-center">
+<div class="d-flex flex-column justify-content-center align-items-center">
     <h1>Detalles de Asistencias</h1>
+    <h1 id="nombre-completo" th:text="${asigGruNombre}"></h1>
 </div>
 <div class="container">
-    <form id="searchForm" class="d-flex" role="search" method="post" th:action="@{/asistencia/listar?asigGruId=1}">
+    <div class="pb-2">
+        <a href="http://localhost:8080/asignatura/alta"><button type="" class="btn btn-light col-1">Alta</button></a>
+    </div>
+
+    <form id="searchForm" class="d-flex" role="search" method="post" th:action="@{/asistencia/listar(asigGruId=${asigGruId})}">
         <input type="hidden" name="asigGruId" th:value="${asigGruId}">
         <input class="form-control me-2" type="search" placeholder="Buscar" name="filtro" id="filtro" aria-label="filtro" th:value="${filtro}">
         <button class="btn btn-outline-primary" type="submit">Buscar</button>
@@ -31,7 +36,6 @@
         <thead>
         <tr class="text-left">
             <th>Fecha</th>
-            <th>ID Alumno</th>
             <th>Nombre Alumno</th>
             <th>Apellido Alumno</th>
             <th>ID Horario Detalle</th>
@@ -45,7 +49,6 @@
         <tbody>
         <tr th:each="asistencia : ${asistencias}">
             <td th:text="${asistencia.fecha}"></td>
-            <td th:text="${asistencia.idAlumno}"></td>
             <td th:text="${asistencia.nombreAlumno}"></td>
             <td th:text="${asistencia.apellidoAlumno}"></td>
             <td th:text="${asistencia.idHorarioDetalle}"></td>

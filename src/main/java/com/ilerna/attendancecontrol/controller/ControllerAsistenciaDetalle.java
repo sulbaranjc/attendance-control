@@ -1,6 +1,8 @@
 package com.ilerna.attendancecontrol.controller;
 
 import Codigo.AsistenciaDetalle;
+import Codigo.GestorAsignatura;
+import Codigo.GestorAsignaturaGrupo;
 import Codigo.GestorAsistenciaDetalle;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +33,9 @@ public class ControllerAsistenciaDetalle {
             } else {
                 model.addAttribute("asistencias", gestorAsistencia.listarFiltrados(asigGruId,filtro));
             }
+            GestorAsignaturaGrupo geGru = new GestorAsignaturaGrupo ();
+            model.addAttribute("asigGruNombre", geGru.consultarUn(asigGruId).getNombreIdAsignatura());
+            //model.addAttribute("asigGruNombre", ge.consultarUn(asigGruId).getNombreAsignatura());
             model.addAttribute("asigGruId", asigGruId); // Para usarlo en la vista, si es necesario
             model.addAttribute("filtro", filtro); // Para usarlo en la vista, si es necesario
         } catch (SQLException ex) {
@@ -50,6 +55,8 @@ public class ControllerAsistenciaDetalle {
             } else {
                 model.addAttribute("asistencias", gestorAsistencia.listarFiltrados(asigGruId,filtro));
             }
+            GestorAsignaturaGrupo geGru = new GestorAsignaturaGrupo ();
+            model.addAttribute("asigGruNombre", geGru.consultarUn(asigGruId).getNombreIdAsignatura());
             model.addAttribute("filtro", filtro);
             model.addAttribute("asigGruId", asigGruId);
         } catch (SQLException ex) {
